@@ -44,7 +44,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 items-center">
+      <div className="container flex h-16 items-center">
         <div className="mr-4 hidden md:flex">
           <Logo />
         </div>
@@ -79,7 +79,7 @@ export function Header() {
           <div className="w-full flex-1 md:w-auto md:flex-none">
             {/* Can add search bar here later */}
           </div>
-          <nav className="hidden items-center gap-4 text-sm md:flex">
+          <nav className="hidden items-center gap-6 text-sm md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -96,7 +96,7 @@ export function Header() {
             ) : user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                  <Button variant="secondary" className="relative h-8 w-8 rounded-full">
                     <Avatar className="h-8 w-8">
                       <AvatarImage src={user.photoURL || undefined} alt={user.displayName || "User"} />
                       <AvatarFallback>{getInitials(user.displayName)}</AvatarFallback>

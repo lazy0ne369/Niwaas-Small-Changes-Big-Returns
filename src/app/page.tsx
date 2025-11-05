@@ -17,24 +17,25 @@ export default function Home() {
     <div className="flex flex-col min-h-dvh">
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-secondary/50">
+        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-secondary/20">
           <div className="container px-4 md:px-6">
             <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
               <div className="flex flex-col justify-center space-y-4">
                 <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
+                   <Badge variant="outline" className="text-sm">Personalized Home Insights</Badge>
+                  <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none font-headline">
                     Add Value to Your Indian Home
                   </h1>
                   <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    Personalized home improvement insights to help you increase your property's market value.
+                    Our platform helps you understand, plan, and execute home improvements to maximize your property's market value.
                   </p>
                 </div>
                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                   <Link href="/onboarding">
-                    <Button size="lg">Get Started</Button>
+                    <Button size="lg">Get Started for Free <ArrowRight className="ml-2 h-4 w-4" /></Button>
                   </Link>
                   <Link href="/ideas">
-                    <Button size="lg" variant="secondary">Browse Ideas</Button>
+                    <Button size="lg" variant="outline">Browse Ideas</Button>
                   </Link>
                 </div>
               </div>
@@ -44,86 +45,82 @@ export default function Home() {
                 data-ai-hint={heroImage.imageHint}
                 width={600}
                 height={400}
-                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square"
+                className="mx-auto aspect-video overflow-hidden rounded-xl object-cover sm:w-full lg:order-last lg:aspect-square shadow-xl"
               />
             </div>
           </div>
         </section>
 
         {/* Featured Improvements Section */}
-        <section id="ideas" className="w-full py-12 md:py-24 lg:py-32">
+        <section id="ideas" className="w-full py-12 md:py-24 lg:py-32 bg-background">
           <div className="container px-4 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-muted px-3 py-1 text-sm">Featured Improvements</div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl font-headline">Upgrade Your Home, Upgrade Your Life</h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Explore curated project ideas with proven ROI, tailored for Indian homes.
+                  Explore curated project ideas with proven ROI, tailored for the Indian market.
                 </p>
               </div>
             </div>
             <div className="mx-auto grid max-w-5xl items-start gap-8 sm:grid-cols-2 md:gap-12 lg:max-w-none lg:grid-cols-3 mt-12">
-              <Card>
+              <Card className="hover:shadow-lg transition-shadow border-0 bg-secondary/20">
                 <CardHeader>
                   <Image src={kitchenImage.imageUrl} alt={kitchenImage.description} data-ai-hint={kitchenImage.imageHint} width={600} height={400} className="rounded-t-lg object-cover aspect-video" />
                   <CardTitle className="pt-4">Budget-Friendly Kitchen Remodel</CardTitle>
-                  <CardDescription>ROI: 15-20%</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Give your kitchen a modern look without breaking the bank. Focus on smart storage, new countertops, and efficient lighting.</p>
+                  <p>Give your kitchen a modern look. Focus on smart storage, new countertops, and efficient lighting. <Badge variant="secondary">ROI: 15-20%</Badge></p>
                 </CardContent>
                 <CardFooter>
                   <Link href="/ideas/kitchen-remodel" className="w-full">
-                    <Button className="w-full">View Details</Button>
+                    <Button className="w-full" variant="outline">View Details</Button>
                   </Link>
                 </CardFooter>
               </Card>
-              <Card>
+              <Card className="hover:shadow-lg transition-shadow border-0 bg-secondary/20">
                 <CardHeader>
                   <Image src={bathroomImage.imageUrl} alt={bathroomImage.description} data-ai-hint={bathroomImage.imageHint} width={600} height={400} className="rounded-t-lg object-cover aspect-video" />
                   <CardTitle className="pt-4">Mid-Range Bathroom Upgrade</CardTitle>
-                  <CardDescription>ROI: 12-18%</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Transform your bathroom into a spa-like retreat with modern fixtures, better ventilation, and stylish tiles.</p>
+                  <p>Transform your bathroom into a spa-like retreat with modern fixtures, better ventilation, and stylish tiles. <Badge variant="secondary">ROI: 12-18%</Badge></p>
                 </CardContent>
                 <CardFooter>
                    <Link href="/ideas/bathroom-upgrade" className="w-full">
-                    <Button className="w-full">View Details</Button>
+                    <Button className="w-full" variant="outline">View Details</Button>
                   </Link>
                 </CardFooter>
               </Card>
-              <Card>
+              <Card className="hover:shadow-lg transition-shadow border-0 bg-secondary/20">
                 <CardHeader>
                   <Image src={livingRoomImage.imageUrl} alt={livingRoomImage.description} data-ai-hint={livingRoomImage.imageHint} width={600} height={400} className="rounded-t-lg object-cover aspect-video" />
                   <CardTitle className="pt-4">Living Room & Balcony Makeover</CardTitle>
-                  <CardDescription>ROI: 10-15%</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p>Create a welcoming and functional living space that connects seamlessly with your outdoor area. Focus on lighting and flexible furniture.</p>
+                    <p>Create a welcoming living space that connects with your outdoor area. Focus on lighting and furniture. <Badge variant="secondary">ROI: 10-15%</Badge></p>
                 </CardContent>
                 <CardFooter>
                    <Link href="/ideas/living-room-makeover" className="w-full">
-                    <Button className="w-full">View Details</Button>
+                    <Button className="w-full" variant="outline">View Details</Button>
                   </Link>
                 </CardFooter>
               </Card>
             </div>
              <div className="text-center mt-12">
                 <Link href="/ideas">
-                  <Button size="lg" variant="outline">Explore All Ideas <ArrowRight className="ml-2 h-4 w-4" /></Button>
+                  <Button size="lg">Explore All Ideas <ArrowRight className="ml-2 h-4 w-4" /></Button>
                 </Link>
               </div>
           </div>
         </section>
 
         {/* AI Suggestions & Expert Chat Section */}
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary/50">
+        <section className="w-full py-12 md:py-24 lg:py-32 bg-secondary/20">
           <div className="container grid items-center justify-center gap-4 px-4 text-center md:px-6">
             <div className="space-y-3">
               <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight font-headline">Get Expert Advice Instantly</h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Our AI-powered expert chat can answer your toughest home improvement questions.
+                Our AI-powered expert chat can answer your toughest home improvement questions, tailored to the Indian context.
               </p>
             </div>
             <div className="mx-auto w-full max-w-sm space-y-2">
@@ -155,13 +152,13 @@ export default function Home() {
                   </div>
                   <span className="text-sm text-muted-foreground">(4.0)</span>
                 </div>
-                 <blockquote className="text-lg italic text-muted-foreground">
+                 <blockquote className="text-lg italic text-muted-foreground border-l-2 pl-4">
                   "Niwaas Pro helped us identify the best upgrades for our Pune flat. The kitchen remodel not only made our home more beautiful but also increased its value by 12%!"
                 </blockquote>
                 <div className="font-semibold">Priya & Rohan, Pune</div>
                 <Link href="/projects"
                     className="inline-flex items-center justify-center text-sm font-medium transition-colors text-primary hover:text-primary/80">
-                  Explore Their Project
+                  See Their Project Plan
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </div>
@@ -183,18 +180,18 @@ export default function Home() {
                                     <p className="font-semibold">Apartment (2BHK)</p>
                                     <p className="text-sm text-muted-foreground">Suburban Areas</p>
                                 </div>
-                                <p className="ml-auto font-semibold text-green-600">+4.5%</p>
+                                <p className="ml-auto font-bold text-green-600">+4.5%</p>
                             </div>
                             <div className="flex items-center">
-                                <IndianRupee className="h-6 w-6 mr-4 text-accent" />
+                                <IndianRupee className="h-6 w-6 mr-4 text-primary" />
                                 <div>
                                     <p className="font-semibold">Rental Yield</p>
                                     <p className="text-sm text-muted-foreground">City-wide Average</p>
                                 </div>
-                                <p className="ml-auto font-semibold text-green-600">+2.1%</p>
+                                <p className="ml-auto font-bold text-green-600">+2.1%</p>
                             </div>
                             <div className="flex items-center">
-                                <BarChart className="h-6 w-6 mr-4 text-secondary-foreground" />
+                                <BarChart className="h-6 w-6 mr-4 text-primary" />
                                 <div>
                                     <p className="font-semibold">Most Valued Upgrade</p>
                                     <p className="text-sm text-muted-foreground">Kitchen & Bathroom</p>

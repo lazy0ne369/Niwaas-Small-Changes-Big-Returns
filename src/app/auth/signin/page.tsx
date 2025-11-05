@@ -10,6 +10,7 @@ import { useAuth } from "@/firebase";
 import { GoogleAuthProvider, signInWithPopup, signInWithEmailAndPassword } from "firebase/auth";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Logo } from "@/components/logo";
 
 export default function SignInPage() {
   const auth = useAuth();
@@ -47,10 +48,11 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] py-12">
-      <Card className="mx-auto max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-2xl font-headline">Sign In</CardTitle>
+    <div className="flex items-center justify-center min-h-dvh py-12 bg-secondary/20">
+      <Card className="mx-auto max-w-sm w-full">
+         <CardHeader className="items-center">
+            <Logo />
+          <CardTitle className="text-2xl font-headline pt-4">Sign In</CardTitle>
           <CardDescription>
             Enter your email below to sign in to your account
           </CardDescription>
@@ -88,7 +90,15 @@ export default function SignInPage() {
               Sign In
             </Button>
           </form>
-          <Button variant="outline" className="w-full mt-4" onClick={handleGoogleSignIn}>
+          <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+            </div>
+          </div>
+          <Button variant="outline" className="w-full" onClick={handleGoogleSignIn}>
             <Chrome className="mr-2 h-4 w-4" />
             Sign in with Google
           </Button>

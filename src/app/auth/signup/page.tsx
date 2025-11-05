@@ -12,6 +12,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { doc, setDoc } from "firebase/firestore";
 import { useFirestore } from "@/firebase";
+import { Logo } from "@/components/logo";
+
 
 export default function SignUpPage() {
   const auth = useAuth();
@@ -82,13 +84,14 @@ export default function SignUpPage() {
 
 
   return (
-    <div className="flex items-center justify-center min-h-[calc(100vh-10rem)] py-12">
-      <Card className="mx-auto max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-2xl font-headline">Sign Up</CardTitle>
-          <CardDescription>
-            Enter your information to create an account
-          </CardDescription>
+    <div className="flex items-center justify-center min-h-dvh py-12 bg-secondary/20">
+      <Card className="mx-auto max-w-sm w-full">
+        <CardHeader className="items-center">
+            <Logo />
+            <CardTitle className="text-2xl font-headline pt-4">Sign Up</CardTitle>
+            <CardDescription>
+                Enter your information to create an account
+            </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleEmailSignUp} className="grid gap-4">
@@ -140,7 +143,15 @@ export default function SignUpPage() {
               Create an account
             </Button>
           </form>
-            <Button variant="outline" className="w-full mt-4" onClick={handleGoogleSignIn}>
+           <div className="relative my-4">
+            <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t" />
+            </div>
+            <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">Or continue with</span>
+            </div>
+          </div>
+            <Button variant="outline" className="w-full" onClick={handleGoogleSignIn}>
               <Chrome className="mr-2 h-4 w-4" />
               Sign up with Google
             </Button>
