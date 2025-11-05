@@ -1,0 +1,160 @@
+/**
+ * @fileoverview Firestore Security Rules for the Home Improvement App.
+ *
+ * Core Philosophy:
+ * This ruleset enforces a strict user-ownership model for personal data
+ * (users, properties, and projects). Data not directly owned by users is public.
+ *
+ * Data Structure:
+ * - /users/{userId}: Stores user profiles. User ID in path must match the user's auth UID.
+ * - /users/{userId}/properties/{propertyId}: Stores property details.  Includes userId for authorization.
+ * - /users/{userId}/properties/{propertyId}/projects/{projectId}: Stores project details. Includes userId and propertyId for authorization.
+ * - /improvement_ideas/{improvementIdeaId}: Stores public improvement ideas.  Publicly readable.
+ * - /contractors/{contractorId}: Stores public contractor information. Publicly readable.
+ * - /project_contractors/{projectContractorId}: Stores the association between projects and contractors.
+ *
+ * Key Security Decisions:
+ * - Users can only read and write their own profile data.
+ * - Users can only manage properties and projects associated with their account.
+ * - Listing of user documents is denied to prevent enumeration.
+ * - Improvement ideas and contractors are publicly readable.
+ *
+ * Denormalization for Authorization:
+ * - Subcollections like `/users/{userId}/properties/{propertyId}` include the `userId` field within the document itself. This denormalization allows security rules to validate ownership without needing costly `get()` operations.
+ *
+ * Structural Segregation:
+ * - Private user data (profiles, properties, projects) is stored under the `/users/{userId}` path, while public data (improvement ideas, contractors) resides in top-level collections. This separation simplifies security rules and improves query performance.
+ */
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    /**
+     * @description Controls access to user profile documents.
+     * @path /users/{userId}
+     * @allow (create) User with matching UID creates their profile.
+     * @allow (get) User can read their own profile.
+     * @allow (update) User can update their own profile.
+     * @allow (delete) User can delete their own profile.
+     * @deny (create) User attempts to create a profile with a mismatched UID.
+     * @deny (get) User attempts to read another user's profile.
+     * @deny (update) User attempts to update another user's profile.
+     * @deny (delete) User attempts to delete another user's profile.
+     * @principle Enforces document ownership based on the user ID in the path.
+     */
+    match /users/{userId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow create: if isOwner(userId) && request.resource.data.id == userId;
+      allow get: if isOwner(userId);
+      allow list: if false;
+      allow update: if isExistingOwner(userId) && request.resource.data.id == resource.data.id;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to property documents under a user's profile.
+     * @path /users/{userId}/properties/{propertyId}
+     * @allow (create) User creates a property under their profile with the correct userId.
+     * @allow (get) User can read their own property.
+     * @allow (list) User can list their own properties.
+     * @allow (update) User can update their own property.
+     * @allow (delete) User can delete their own property.
+     * @deny (create) User attempts to create a property under another user's profile.
+     * @deny (get) User attempts to read another user's property.
+     * @deny (update) User attempts to update another user's property.
+     * @deny (delete) User attempts to delete another user's property.
+     * @principle Enforces document ownership and prevents cross-user data access.
+     */
+    match /users/{userId}/properties/{propertyId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow create: if isOwner(userId) && request.resource.data.userId == userId;
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Controls access to project documents under a user's property.
+     * @path /users/{userId}/properties/{propertyId}/projects/{projectId}
+     * @allow (create) User creates a project under their property with the correct userId and propertyId.
+     * @allow (get) User can read their own project.
+     * @allow (list) User can list their own projects.
+     * @allow (update) User can update their own project.
+     * @allow (delete) User can delete their own project.
+     * @deny (create) User attempts to create a project under another user's property.
+     * @deny (get) User attempts to read another user's project.
+     * @deny (update) User attempts to update another user's project.
+     * @deny (delete) User attempts to delete another user's project.
+     * @principle Enforces nested document ownership to maintain data integrity.
+     */
+    match /users/{userId}/properties/{propertyId}/projects/{projectId} {
+      function isOwner(userId) {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      function isExistingOwner(userId) {
+        return isOwner(userId) && resource != null;
+      }
+
+      allow create: if isOwner(userId) && request.resource.data.userId == userId && request.resource.data.propertyId == propertyId;
+      allow get: if isOwner(userId);
+      allow list: if isOwner(userId);
+      allow update: if isExistingOwner(userId) && request.resource.data.userId == resource.data.userId && request.resource.data.propertyId == propertyId;
+      allow delete: if isExistingOwner(userId);
+    }
+
+    /**
+     * @description Allows public read access to improvement ideas.
+     * @path /improvement_ideas/{improvementIdeaId}
+     * @allow (get, list) Anyone can read improvement ideas.
+     * @deny (create, update, delete) Only authenticated users can create, update, or delete improvement ideas.
+     * @TODO Add admin role validation for writes
+     * @principle Enables public access for read-only data.
+     */
+    match /improvement_ideas/{improvementIdeaId} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update, delete: if false; // TODO: Add admin role validation for writes
+    }
+
+    /**
+     * @description Allows public read access to contractor information.
+     * @path /contractors/{contractorId}
+     * @allow (get, list) Anyone can read contractor information.
+     * @deny (create, update, delete) Only authenticated users can create, update, or delete contractor information.
+     * @TODO Add admin role validation for writes
+     * @principle Enables public access for read-only data.
+     */
+    match /contractors/{contractorId} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update, delete: if false; // TODO: Add admin role validation for writes
+    }
+
+     /**
+      * @description Controls access to the ProjectContractor documents.
+      * @path /project_contractors/{projectContractorId}
+      * @allow (get, list) Anyone can read ProjectContractor information.
+      * @deny (create, update, delete) Only authenticated users can create, update, or delete ProjectContractor information.
+      * @TODO Add more granual access control based on project ownership.
+      * @principle Enables public read access.
+      */
+    match /project_contractors/{projectContractorId} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update, delete: if false; // TODO: Add more granual access control based on project ownership.
+    }
+  }
+}

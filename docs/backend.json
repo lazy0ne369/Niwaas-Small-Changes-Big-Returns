@@ -1,0 +1,356 @@
+{
+  "entities": {
+    "Property": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Property",
+      "type": "object",
+      "description": "Represents a user's property and its details.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the property."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Property)"
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of home (Apartment, Villa, Row House, Independent)."
+        },
+        "location": {
+          "type": "string",
+          "description": "Location of the property."
+        },
+        "sizeSqFt": {
+          "type": "number",
+          "description": "Property size in square feet."
+        },
+        "age": {
+          "type": "number",
+          "description": "Age of the property in years."
+        },
+        "bhk": {
+          "type": "number",
+          "description": "Number of bedrooms, hall, and kitchen (BHK)."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "type",
+        "location",
+        "sizeSqFt",
+        "age",
+        "bhk"
+      ]
+    },
+    "ImprovementIdea": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ImprovementIdea",
+      "type": "object",
+      "description": "Represents a home improvement idea.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the improvement idea."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the improvement idea (e.g., Kitchen Remodel)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the improvement idea."
+        },
+        "costEstimate": {
+          "type": "number",
+          "description": "Estimated cost of the improvement."
+        },
+        "timeInvestment": {
+          "type": "string",
+          "description": "Estimated time investment (e.g., 2 weeks)."
+        },
+        "roiPotential": {
+          "type": "number",
+          "description": "Return on investment (ROI) potential (e.g., 15%)."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "description",
+        "costEstimate",
+        "timeInvestment",
+        "roiPotential"
+      ]
+    },
+    "Project": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Project",
+      "type": "object",
+      "description": "Represents a user's home improvement project.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the project."
+        },
+        "userId": {
+          "type": "string",
+          "description": "Reference to User. (Relationship: User 1:N Project)"
+        },
+        "propertyId": {
+          "type": "string",
+          "description": "Reference to Property. (Relationship: Property 1:N Project)"
+        },
+        "improvementIdeaId": {
+          "type": "string",
+          "description": "Reference to ImprovementIdea. (Relationship: ImprovementIdea 1:N Project)"
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the project (e.g., Kitchen Remodel)."
+        },
+        "startDate": {
+          "type": "string",
+          "description": "Start date of the project.",
+          "format": "date-time"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "End date of the project.",
+          "format": "date-time"
+        },
+        "budget": {
+          "type": "number",
+          "description": "Budget for the project."
+        },
+        "progress": {
+          "type": "number",
+          "description": "Current progress of the project (e.g., 50%)."
+        }
+      },
+      "required": [
+        "id",
+        "userId",
+        "propertyId",
+        "improvementIdeaId",
+        "name",
+        "startDate",
+        "endDate",
+        "budget",
+        "progress"
+      ]
+    },
+    "Contractor": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "Contractor",
+      "type": "object",
+      "description": "Represents a contractor or supplier.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the contractor."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the contractor."
+        },
+        "specialty": {
+          "type": "string",
+          "description": "Specialty of the contractor (e.g., Plumbing, Electrical)."
+        },
+        "location": {
+          "type": "string",
+          "description": "Location of the contractor."
+        },
+        "rating": {
+          "type": "number",
+          "description": "Rating of the contractor (e.g., 4.5 stars)."
+        },
+        "verified": {
+          "type": "boolean",
+          "description": "Indicates if the contractor is verified."
+        }
+      },
+      "required": [
+        "id",
+        "name",
+        "specialty",
+        "location",
+        "rating",
+        "verified"
+      ]
+    },
+    "ProjectContractor": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "ProjectContractor",
+      "type": "object",
+      "description": "Represents the association between a project and contractors (N:N relationship).",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the project contractor relationship."
+        },
+        "projectId": {
+          "type": "string",
+          "description": "Reference to Project. (Relationship: Project N:N Contractor)"
+        },
+        "contractorId": {
+          "type": "string",
+          "description": "Reference to Contractor. (Relationship: Project N:N Contractor)"
+        }
+      },
+      "required": [
+        "id",
+        "projectId",
+        "contractorId"
+      ]
+    },
+    "User": {
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "title": "User",
+      "type": "object",
+      "description": "Represents a user of the application.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the user."
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the user.",
+          "format": "email"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the user."
+        }
+      },
+      "required": [
+        "id",
+        "email",
+        "displayName"
+      ]
+    }
+  },
+  "auth": {
+    "providers": [
+      "password",
+      "anonymous"
+    ]
+  },
+  "firestore": {
+    "structure": [
+      {
+        "path": "/users/{userId}",
+        "definition": {
+          "entityName": "User",
+          "schema": {
+            "$ref": "#/backend/entities/User"
+          },
+          "description": "Stores user profile information. Path-based ownership for private data.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/properties/{propertyId}",
+        "definition": {
+          "entityName": "Property",
+          "schema": {
+            "$ref": "#/backend/entities/Property"
+          },
+          "description": "Stores property details for a user. Includes denormalized 'userId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "propertyId",
+              "description": "The unique identifier of the property."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/users/{userId}/properties/{propertyId}/projects/{projectId}",
+        "definition": {
+          "entityName": "Project",
+          "schema": {
+            "$ref": "#/backend/entities/Project"
+          },
+          "description": "Stores project details for a property. Includes denormalized 'userId' and 'propertyId' for authorization independence.",
+          "params": [
+            {
+              "name": "userId",
+              "description": "The unique identifier of the user."
+            },
+            {
+              "name": "propertyId",
+              "description": "The unique identifier of the property."
+            },
+            {
+              "name": "projectId",
+              "description": "The unique identifier of the project."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/improvement_ideas/{improvementIdeaId}",
+        "definition": {
+          "entityName": "ImprovementIdea",
+          "schema": {
+            "$ref": "#/backend/entities/ImprovementIdea"
+          },
+          "description": "Stores general improvement ideas available to all users.",
+          "params": [
+            {
+              "name": "improvementIdeaId",
+              "description": "The unique identifier of the improvement idea."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/contractors/{contractorId}",
+        "definition": {
+          "entityName": "Contractor",
+          "schema": {
+            "$ref": "#/backend/entities/Contractor"
+          },
+          "description": "Stores contractor information.",
+          "params": [
+            {
+              "name": "contractorId",
+              "description": "The unique identifier of the contractor."
+            }
+          ]
+        }
+      },
+      {
+        "path": "/project_contractors/{projectContractorId}",
+        "definition": {
+          "entityName": "ProjectContractor",
+          "schema": {
+            "$ref": "#/backend/entities/ProjectContractor"
+          },
+          "description": "Stores the association between projects and contractors (N:N relationship).",
+          "params": [
+            {
+              "name": "projectContractorId",
+              "description": "The unique identifier for the project contractor relationship."
+            }
+          ]
+        }
+      }
+    ],
+    "reasoning": "The Firestore structure is designed to follow the principles of Authorization Independence, Clarity of Intent, and Structural Segregation. User-owned data is organized under `/users/{userId}` for simple, path-based security rules. Collections are segregated based on security requirements to avoid complex rule logic. Denormalization, specifically copying the `userId` into subcollections (like properties and projects), avoids costly and insecure `get()` calls in security rules, achieving Authorization Independence. The structure enables secure `list` operations (QAPs) by ensuring each collection contains documents with uniform security requirements. The use of consistent naming conventions and explicit state modeling enhances debuggability."
+  }
+}
