@@ -1,3 +1,70 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-1",
+      "description": "A modern, bright living room in an Indian apartment.",
+      "imageUrl": "https://images.unsplash.com/photo-1705321963943-de94bb3f0dd3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBsaXZpbmclMjByb29tfGVufDB8fHx8MTc2MjMyMDc4M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern living room"
+    },
+    {
+      "id": "kitchen-remodel",
+      "description": "A stylish modular kitchen.",
+      "imageUrl": "https://images.unsplash.com/photo-1559554704-0f74b35a8718?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtb2R1bGFyJTIwa2l0Y2hlbnxlbnwwfHx8fDE3NjIzNjE5NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modular kitchen"
+    },
+    {
+      "id": "bathroom-upgrade",
+      "description": "A clean and modern bathroom with new fixtures.",
+      "imageUrl": "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxtb2Rlcm4lMjBiYXRocm9vbXxlbnwwfHx8fDE3NjIzMTM3Njh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "modern bathroom"
+    },
+    {
+      "id": "living-room-makeover",
+      "description": "A cozy living room with a balcony.",
+      "imageUrl": "https://images.unsplash.com/photo-1726090401458-7abb00f7450c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxjb3p5JTIwbGl2aW5nJTIwcm9vbXxlbnwwfHx8fDE3NjIzNjE5NjB8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "cozy living room"
+    },
+    {
+      "id": "success-story-1",
+      "description": "A happy couple in their newly renovated home.",
+      "imageUrl": "https://images.unsplash.com/photo-1758523417356-3171f06a32b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxoYXBweSUyMGNvdXBsZSUyMGhvbWV8ZW58MHx8fHwxNzYyMzYxOTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "happy couple home"
+    },
+    {
+      "id": "contractor-1",
+      "description": "Portrait of a friendly male contractor.",
+      "imageUrl": "https://images.unsplash.com/photo-1639069428249-1a31cfcd644c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWxlJTIwY29udHJhY3RvcnxlbnwwfHx8fDE3NjIzNjE5NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male contractor"
+    },
+    {
+      "id": "contractor-2",
+      "description": "Portrait of a professional female interior designer.",
+      "imageUrl": "https://images.unsplash.com/photo-1753164597332-cb53627871e3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmZW1hbGUlMjBkZXNpZ25lcnxlbnwwfHx8fDE3NjIyNzA2MDh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female designer"
+    },
+    {
+      "id": "contractor-3",
+      "description": "Portrait of an experienced male electrician.",
+      "imageUrl": "https://images.unsplash.com/photo-1689795613468-67b6bca88a58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxtYWxlJTIwZWxlY3RyaWNpYW58ZW58MHx8fHwxNzYyMzYxOTYwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male electrician"
+    },
+    {
+      "id": "smart-home",
+      "description": "A hand holding a smartphone controlling smart home devices.",
+      "imageUrl": "https://images.unsplash.com/photo-1608377205619-03a0b4c4e270?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxzbWFydCUyMGhvbWV8ZW58MHx8fHwxNzYyMzQ0NTg4fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "smart home"
+    },
+    {
+      "id": "landscaping",
+      "description": "A beautiful small residential garden.",
+      "imageUrl": "https://images.unsplash.com/photo-1642833465562-f81525657851?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxyZXNpZGVudGlhbCUyMGdhcmRlbnxlbnwwfHx8fDE3NjIzNjE5NjF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "residential garden"
+    },
+    {
+      "id": "painting",
+      "description": "A freshly painted room with vibrant colors.",
+      "imageUrl": "https://images.unsplash.com/photo-1640623885137-e5ce69700aba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwYWludGVkJTIwcm9vbXxlbnwwfHx8fDE3NjIzNDAxNjJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "painted room"
+    }
+  ]
 }
