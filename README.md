@@ -4,7 +4,6 @@ Empowering India's middle-class homeowners to make smart, budget-friendly home i
 
 📋 Table of Contents
 
-Overview
 Why Niwaas?
 Key Features
 Technology Stack
